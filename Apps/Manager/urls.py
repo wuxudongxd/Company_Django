@@ -1,10 +1,17 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
+
+from rest_framework.routers import DefaultRouter  # 导入
+
+router = DefaultRouter()  # 实例化router
+
+router.register('users', views.UserList)
 
 app_name = 'Manager'
 urlpatterns = [
-    path('users/', views.UserList.as_view(), name='UserList'),
-    path('users/<int:pk>/', views.UserDetail.as_view(), name='UserDetail'),
+    path('', include(router.urls)),
+    # path('users/', views.UserList.as_view(), name='UserList'),
+    # path('users/<int:pk>/', views.UserDetail.as_view(), name='UserDetail'),
     path('departments/', views.DepartmentList.as_view(), name='DepartmentList'),
     path('departments/<int:pk>/', views.DepartmentDetail.as_view(), name='DepartmentDetail'),
     path('positions/', views.PositionList.as_view(), name='PositionList'),
