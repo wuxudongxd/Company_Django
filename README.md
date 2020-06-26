@@ -1,4 +1,4 @@
 # Company_Django
 
-初始
+测试pull拉取记录-pycharm
 
